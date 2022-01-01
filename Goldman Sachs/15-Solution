@@ -1,0 +1,33 @@
+//Question Link -
+
+//Solution-
+
+bool canPair(vector<int> nums, int k) {
+        int ar[k];
+        memset(ar,0,sizeof(ar));
+        for(int i=0;i<nums.size();i++)
+        {
+            int val=nums[i]%k;
+            ar[val]++;    
+        }
+        if(ar[0]%2)
+            return false;
+        for(int i=1,j=k-1;i<=j;i++,j--)
+        {
+            if(ar[i]!=ar[j])
+            return false;
+        }
+        return true;
+}
+ 
+/*
+Time Complexity- O(N), where N is sizeof vector nums
+Space Complexity - O(K)
+
+Algorithm- 
+1-Create an array of size K and initalize all its values to 0.
+2-Use this array to store count of numbers with particular remainder from 0 to K-1.
+3-Numbers with remainder=0 must be even. 
+4-Numbers with remainder 1 = Numbers with remainder K-1 , Numbers with remainder 2 = Numbers with remainder K-2....and so on.
+5- If condition 3 and 4 are true, then and only then given array can be divided into pairs such that sum of every pair is divisible by k.
+*/
