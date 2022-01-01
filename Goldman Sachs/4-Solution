@@ -1,0 +1,33 @@
+//Question Link - https://practice.geeksforgeeks.org/problems/run-length-encoding/1/
+
+//Solution-
+
+string encode(string src)
+{     
+    int cnt=1;
+    string st="";
+    st+=src[0];
+    for(int i=1;i<src.size();i++)
+    {
+        if(src[i]!=src[i-1])
+        {
+            st+=to_string(cnt);
+            st+=src[i];
+            cnt=1;
+        }
+        else
+        cnt++;
+    }
+    st+=to_string(cnt);
+    return st;
+}   
+
+/*
+Time Complexity - O(N), where N is length of string
+Space Complexity - O(1).
+
+Algorithm -
+1-Create empty string. (i.e. str="")
+2-Append character to string and count its continuous occurrences .
+3-Convert the count into string and append it to string.
+*/
