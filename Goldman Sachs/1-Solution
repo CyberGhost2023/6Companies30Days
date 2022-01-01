@@ -1,6 +1,6 @@
-Question Link- https://practice.geeksforgeeks.org/problems/print-anagrams-together/1/
+//Question Link- https://practice.geeksforgeeks.org/problems/print-anagrams-together/1/
 
-Solution -
+//Solution -
 
 vector<vector<string> > Anagrams(vector<string>& string_list) {
         int sz=string_list.size();
@@ -21,5 +21,14 @@ vector<vector<string> > Anagrams(vector<string>& string_list) {
         return result;
 }
 
-//Time Complexity- O(N*|S|*log|S|) , where N is total number of strings and |S| denotes size of a string
-//Space Complexity - O(N*|S|), for storing hashMap.
+/*
+Time Complexity- O(N*|S|*log|S|) , where N is total number of strings and |S| denotes size of a string
+Space Complexity - O(N*|S|), for storing hashMap.
+
+Algorithm-
+1- Iterate through string list, create a copy of each string and sort it.
+2- Check if the sorted string has hashValue or not. If not, then give the sorted string a hashValue which is position of its anagrams in vector<vector<string>>.
+3- Push the original string in vector<vector<string>> at position = hashValue.
+4- Now all anagrams are stored , so output them one by one.
+
+*/
