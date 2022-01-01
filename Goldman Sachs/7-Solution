@@ -1,0 +1,16 @@
+//Question Link - https://practice.geeksforgeeks.org/problems/find-the-position-of-m-th-item1723/1
+
+//Soltuion-
+
+int findPosition(int N , int M , int K) {
+        K+=M-1;
+        K=K%N;
+        if(!K)
+        return N;
+        return K;
+}
+
+/*
+Time Complexity - O(1)
+Space Complexity - O(1)
+*/
