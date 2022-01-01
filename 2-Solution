@@ -1,0 +1,22 @@
+//Question Link - https://practice.geeksforgeeks.org/problems/overlapping-rectangles1924/1/
+
+
+//Solution -
+
+int doOverlap(int L1[], int R1[], int L2[], int R2[]) {
+  if(L1[0]>R2[0] || L2[0]>R1[0]) // check if any rectangle is on left of other 
+    return false; 
+  if(L1[1]<R2[1] || L2[1]<R1[1]) //check if any rectangle is above of other
+    return false;
+  return true;
+}
+
+/*
+Time Complexity - O(1)
+Space Complexity - O(1)
+
+Algorithm  (Assuming rectangles are overlapping even when they just touch and also assuming rectangles are never line) - 
+1- Check if a rectangle is on left side of other.
+2- Check if a rectangle is above the other rectangle.
+3- If none of the above condition is true, then rectangles overlap.
+*/
