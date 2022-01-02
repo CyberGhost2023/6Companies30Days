@@ -1,0 +1,36 @@
+//Question - https://practice.geeksforgeeks.org/problems/total-decoding-messages1235/1
+
+//Solution -
+
+static const int mod = 1e9+7;
+
+//recursive function to apply dp nd find solution
+long long findWays(string st,int ind,vector<long long> &dp)
+{
+	        if(st.length()==ind)
+	            return 1;
+	        if(dp[ind]!=-1)
+	            return dp[ind];
+	        long long ways=0,cnt=st[ind]-48;
+	        if(cnt>=1 && cnt<=9)
+	        {
+	            ways=findWays(st,ind+1,dp);
+	            if(ind+1<st.length() && cnt*10+(st[ind+1]-48)>=1 && cnt*10+(st[ind+1]-48)<=26)
+	            {
+	                ways+=findWays(st,ind+2,dp);
+	            }
+	        }
+	        dp[ind]=ways%mod;
+	        return dp[ind];
+}
+
+//provided function with input
+int CountWays(string str){
+		    vector<long long> dp(str.length(),-1);
+		    return findWays(str,0,dp);
+}
+
+/*
+Time Complexity -O(N)
+Space Complexity -O(N), where n is length of given string
+*/
