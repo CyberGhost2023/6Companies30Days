@@ -1,0 +1,17 @@
+//Question - https://practice.geeksforgeeks.org/problems/squares-in-nn-chessboard1801/1
+
+//Solution-
+
+long long squaresInChessBoard(long long N) {
+       long long val=N*(N+1)*(2*N+1)/6;
+        return val;
+}
+
+/*
+Time Complexity - O(1)
+Space Complexity - O(1)
+
+Algorithm - 
+Number of squares is N*N chessboard = Sum of squares of all number from 1 to N. 
+
+*/
