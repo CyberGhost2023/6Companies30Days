@@ -1,0 +1,19 @@
+//Question Link - https://leetcode.com/problems/greatest-common-divisor-of-strings/
+
+
+//Solution -
+
+
+string gcdOfStrings(string str1, string str2) {
+        int l1=str1.size(),l2=str2.size(),gcd=__gcd(l1,l2);
+        return str1+str2==str2+str1?str1.substr(0,gcd):"";
+}
+
+/*
+Time Complexity - O(l1+l2), where l1 and l2 are size of str1 and str2 respectively.
+Space Complexity - O(1)
+
+Algorithm -
+1-Check if str1+str2 equal str2+str1 or not.
+2-If equal then length of common string = gcd(l1,l2) otherwise no common string.
+*/
