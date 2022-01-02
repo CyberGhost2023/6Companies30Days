@@ -1,0 +1,35 @@
+//Question Link - https://practice.geeksforgeeks.org/problems/ugly-numbers2254/1/
+
+//Solution- (ull is unsigned long long)
+
+
+ull getNthUglyNo(int n) {
+	   vector<ull> vt(1,1);
+	   for(int x=0,y=0,z=0;vt.size()!=n;)
+	   {
+	      ull val=min(min(vt[x]*2,vt[y]*3),vt[z]*5);
+	      vt.push_back(val);
+	      if(vt.back()==vt[x]*2)
+	        x++;
+	      if(vt.back()==vt[y]*3)
+	        y++;
+	      if(vt.back()==vt[z]*5)
+	        z++;
+	   }
+	   return vt.back();
+	}
+};
+
+/*
+Time Complexity - O(N)
+Space Complexity - O(N)
+
+Algorithm-
+1-Add 1 as 1st Ugly Number in vector vt.
+2-Multiply 2,3 and 5 with the least value to which they are not multiplied in vector vt.
+3-Select minimum among multiples of 2,3 and 5 and add it in vecotr vt as Ugly Number.
+4-Make sure to avoid adding multiple values such as 6,10,15,20,30,etc.  
+5-Do step 2-4 , till size of vt becomes n, and then return the last value in vt.
+*/
+
+
