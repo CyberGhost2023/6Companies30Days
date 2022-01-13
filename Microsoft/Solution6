@@ -1,0 +1,28 @@
+/*
+Time Complexity - O(4^N )
+Space Complexity - O(1), considering recursive stack doesn't take any space
+
+Question Link - https://practice.geeksforgeeks.org/problems/possible-words-from-phone-digits-1587115620/1/#
+*/
+    
+    string ar[10]={"","" ,"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};    
+    
+    void findWords(vector<string> &vt,string str,int ind,int a[],int N)
+    {
+        if(ind==N)
+        {
+            vt.push_back(str);
+            return;
+        }
+        for(int i=0;i<ar[a[ind]].size();i++)
+        {
+            string sk=str+ar[a[ind]][i];
+            findWords(vt,sk,ind+1,a,N);
+        }
+    }
+    vector<string> possibleWords(int a[], int N)
+    {
+        vector<string> vt;
+        findWords(vt,"",0,a,N);
+        return vt;
+    }
