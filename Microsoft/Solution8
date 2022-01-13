@@ -1,0 +1,35 @@
+  /*
+  Time Complexity - O(N), N is number of nodes
+  Space Complexity - O(N), N is number of nodes
+  
+  Quesiton Link- https://practice.geeksforgeeks.org/problems/connect-nodes-at-same-level/1/#
+  */
+  void connect(Node *root)
+    {
+       queue<pair<Node*,int>> q;
+       int cur=0;
+       if(root->left)
+       q.push({root->left,cur+1});
+       if(root->right)
+       q.push({root->right,cur+1});
+       while(q.size())
+       {
+           Node *pt=q.front().first;
+           int val=q.front().second;
+           if(val!=cur)
+           {
+               root->nextRight=NULL;
+           }
+           else
+           root->nextRight=pt;
+           root=pt;
+           cur=val;
+           q.pop();
+           if(root->left)
+            q.push({root->left,cur+1});
+            if(root->right)
+            q.push({root->right,1+cur});
+       }
+       root->nextRight=NULL;
+       
+    }
