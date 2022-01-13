@@ -1,0 +1,23 @@
+/*
+Time Complexity - O(N), where N is number of nodes
+Space Complexity - O(H), where H is the height of tree
+
+Question Link- https://practice.geeksforgeeks.org/problems/count-number-of-subtrees-having-given-sum/1/#
+*/
+
+int count(Node *root,int X,int *cnt)
+{
+    if(!root)
+        return 0;
+    int lt=count(root->left,X,cnt);
+    int rt=count(root->right,X,cnt);
+    if(root->data+lt+rt==X)
+        (*cnt)+=1;
+    return root->data+lt+rt;
+}
+int countSubtreesWithSumX(Node* root, int X)
+{
+    int cnt=0;
+    count(root,X,&cnt);
+    return cnt;
+}
