@@ -1,0 +1,37 @@
+/*
+Time Complexity - O(N^3)
+Space Complexity - O(X), where X is number of quadruple, this space is needed to create set and make every quadruple unique.
+
+Question Link- https://practice.geeksforgeeks.org/problems/find-all-four-sum-numbers1732/1
+*/
+
+vector<vector<int>> fourSum(vector<int> &ar, int rsum) {
+        sort(ar.begin(),ar.end());
+        int n=ar.size();
+        set<vector<int>> st;
+        vector<vector<int>> vt;
+        for(int i=0;i<n-3;i++)
+        {
+        for(int j=i+1;j<n-2;j++)
+        {
+        for(int k=j+1,l=n-1;k<l;)
+        {
+            int sum=ar[i]+ar[j]+ar[k]+ar[l];
+            if(sum==rsum)
+            {
+                vector<int> vs{ar[i],ar[j],ar[k],ar[l]};
+                st.insert(vs);
+                k++;
+            }
+            else if(sum<rsum)
+            {
+                k++;
+            }
+            else l--;
+        }
+        }
+        }
+        for(auto x:st)
+        vt.push_back(x);
+        return vt;
+    }
