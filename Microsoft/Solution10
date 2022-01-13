@@ -1,0 +1,22 @@
+/*
+Time Complexity - O(N)
+Space Complexity - O(N)
+
+Question Link- https://practice.geeksforgeeks.org/problems/stickler-theif-1587115621/1/#
+*/
+
+int find(int ar[],int n,vector<int> &dp,int ind)
+    {
+        if(ind>=n)
+        return 0;
+        if(dp[ind]!=-1)
+        return dp[ind];
+        dp[ind]=max(ar[ind]+find(ar,n,dp,ind+2),find(ar,n,dp,ind+1));
+        return dp[ind];
+        
+    }
+    int FindMaxSum(int arr[], int n)
+    {
+        vector<int> dp(n,-1);
+        return find(arr,n,dp,0);
+    }
