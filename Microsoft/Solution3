@@ -1,0 +1,22 @@
+/*
+Time Complexity - O(N*N)
+Space Complexity - O(1)
+
+Question Link - https://practice.geeksforgeeks.org/problems/rotate-by-90-degree0356/1/#
+*/
+
+void rotate(vector<vector<int> >& mt)
+{
+    int n=mt.size();
+    for(int i=0;i<n/2;i++)
+    {
+        for(int j=i;j<n-i-1;j++)
+        {
+            int temp=mt[i][j];
+            mt[i][j]=mt[j][n-1-i];
+            mt[j][n-i-1]=mt[n-i-1][n-j-1];
+            mt[n-i-1][n-j-1]=mt[n-j-1][i];
+            mt[n-j-1][i]=temp;
+        }
+    }
+}
