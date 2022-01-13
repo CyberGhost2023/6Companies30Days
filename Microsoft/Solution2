@@ -1,0 +1,40 @@
+/*
+Time Complexity - O(N)
+Space Complexity - O(N^2) in worst case;
+
+Question Link - https://practice.geeksforgeeks.org/problems/prerequisite-tasks/1/#
+*/
+
+bool detectCycle(vector<vector<int>> &adj,vector<int> &vis,vector<int> &rec,int i)
+    {
+        if(vis[i]==0)
+        {
+            vis[i]=rec[i]=1;
+            for(auto x:adj[i])
+            {
+                if(rec[x])
+                    return 1;
+                if(detectCycle(adj,vis,rec,x))
+                return 1;
+            }
+        }
+        rec[i]=0;
+        return 0;
+    }
+
+	bool isPossible(int N, vector<pair<int, int> >& pre) {
+	   vector<vector<int>> adj(N);
+	   for(int i=0;i<pre.size();i++)
+	   {
+	       int first=pre[i].first;
+	       int second=pre[i].second;
+	       adj[second].push_back(first);
+	   }
+	   vector<int> vis(N,0),rec(N,0);
+	   for(int i=0;i<N;i++)
+	   {
+	       if(vis[i]==0 && detectCycle(adj,vis,rec,i))
+	        return 0;
+	   }
+	   return 1;
+	}
