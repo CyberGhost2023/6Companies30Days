@@ -1,0 +1,72 @@
+/*
+Time Complexity - O(R*C), where R is number of rows and c is number of columns.
+Space Complexity- O(1), as no extra space needed.
+
+Question Link- https://practice.geeksforgeeks.org/problems/spirally-traversing-a-matrix-1587115621/1/
+
+*/
+
+vector<int> spirallyTraverse(vector<vector<int> > matrix, int r, int c) 
+    {
+        int i=0,j=0;
+        int str=0,stc=0;
+        int sz=r*c,k=0;
+        vector<int> vt(sz);
+        bool flag=1;
+        while(flag)
+        {
+            flag=0;
+            while(j<c )
+            {
+                vt[k++]=(matrix[i][j]);
+                j++;
+                flag=1;
+            }
+            if(!flag)
+            break;
+            flag=0;
+            j--;
+            i++;
+            while(i<r)
+            {
+                vt[k++]=(matrix[i][j]);
+                i++;
+                flag=1;
+            }
+            
+            if(!flag)
+            break;
+            flag=0;
+            i--;
+            j--;
+            while(j>=stc)
+            {
+                vt[k++]=(matrix[i][j]);
+                j--;
+                flag=1;
+            }
+            
+            if(!flag)
+            break;
+            flag=0;
+            j++;
+            i--;
+            while(i>str)
+            {
+                vt[k++]=(matrix[i][j]);
+                i--;
+                flag=1;
+                
+            }
+            if(!flag)
+            break;
+            i++;
+            j++;
+            str++;
+            stc++;
+            c--;
+            r--;
+            
+        }
+        return vt;
+    }
