@@ -1,0 +1,30 @@
+/*
+Time Complexity - O(N)
+Space Complexity - O(N)
+
+Question Link- https://practice.geeksforgeeks.org/problems/stock-span-problem-1587115621/1
+*/
+
+
+vector <int> calculateSpan(int price[], int n)
+    {
+        stack<int> st;
+        vector<int> vt(n);
+        for(int i=0;i<n;i++)
+        {
+            while(!st.empty() && price[st.top()]<=price[i])
+            {
+                st.pop();
+            }
+            if(st.empty())
+            {
+                vt[i]=1+i;
+            }
+            else
+            {
+                vt[i]=i-st.top();
+            }
+            st.push(i);
+        }
+        return vt;
+    }
