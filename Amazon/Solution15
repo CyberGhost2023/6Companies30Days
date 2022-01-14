@@ -1,0 +1,30 @@
+ /*
+ Time Complexity- O(N), where N is number of nodes in linked list.
+ Space Complexity- O(1).
+ 
+ Question Link- https://practice.geeksforgeeks.org/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/1/#
+ */
+ 
+ void linkdelete(struct Node  *head, int m, int n)
+    {
+        while(head)
+        {
+            int x=m;
+            while((x--)>1 && head)
+            {
+                head=head->next;
+            }
+            if(!head)
+            break;
+            Node *pt=head->next;
+            int y=n;
+            while((y--) && pt)
+            {
+                Node *cur=pt;
+                pt=pt->next;
+                delete(cur);
+            }
+            head->next=pt;
+            head=pt;
+        }
+    }
