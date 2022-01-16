@@ -7,6 +7,8 @@ Amazon Questions Doc- https://docs.google.com/document/d/1KH9GVaUCET-y5SL5sg6DAn
 
 Microsoft Questions Doc- https://docs.google.com/document/d/1sSyOTeZBVJExf0oytLVGk6Z34h1usFm4QRkr1Wb5ouk/edit
 
+Adobe Questions Doc- https://docs.google.com/document/d/1cEAe63fC3YMJRwKmCoVOIXFUaFv5LqNXedxaGpaqd6U/edit
+
 GFG Profile - https://auth.geeksforgeeks.org/user/tusharsachan2014/practice/
 
 LeetCode Profile - https://leetcode.com/cyberghost2023/
