@@ -1,0 +1,22 @@
+/*
+Time Complexity - O(n)
+Space Complexity - O(1)
+
+Question Link- https://practice.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1/
+*/
+
+vector<int> leaders(int ar[], int n){
+        int mx=ar[n-1];
+        vector<int> vt;
+        vt.push_back(ar[n-1]);
+        for(int i=n-2;i>=0;i--)
+        {
+            if(mx<=ar[i])
+            {
+                vt.push_back(ar[i]);
+                mx=ar[i];
+            }
+        }
+        reverse(vt.begin(),vt.end());
+        return vt;
+    }
