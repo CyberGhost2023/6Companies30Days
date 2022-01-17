@@ -1,0 +1,25 @@
+/*
+Time Complexity- O(logN)
+Space Complexity- O(1)
+
+Question Link- https://practice.geeksforgeeks.org/problems/column-name-from-a-given-column-number4244/1/#
+*/
+string colName (long long int n)
+    {
+        vector<int> vt;
+        while(n)
+        {
+            int val=n%26;
+            n/=26;
+            if(val==0)
+            {
+            val=26;
+            n--;
+            }
+            vt.push_back(val);
+        }
+        string st="";
+        for(int i=vt.size()-1;i>=0;i--)
+        st+=char(vt[i]+64);
+        return st;
+    }
