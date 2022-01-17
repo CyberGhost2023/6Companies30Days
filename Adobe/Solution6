@@ -1,0 +1,34 @@
+/*
+Time Complexity- O(2^N)
+Space Complexity- O(N)
+
+Question Link- https://practice.geeksforgeeks.org/problems/generate-all-possible-parentheses/1/#
+*/
+
+void find(stack<char> sta,int n,string st,vector<string> &vt)
+    {
+        if(n==0 && sta.empty())
+        {
+            vt.push_back(st);
+        }
+        if(n>0)
+        {
+            sta.push('(');
+            find(sta,n-1,st+"(",vt);
+            sta.pop();
+        }
+        if(!sta.empty())
+        {
+            sta.pop();
+            find(sta,n,st+")",vt);
+            sta.push('(');
+        }
+    }
+    
+    vector<string> AllParenthesis(int n) 
+    {
+        vector<string> vt;
+        stack<char> sta;
+        find(sta,n,"",vt);
+        return vt;
+    }
