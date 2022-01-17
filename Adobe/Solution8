@@ -1,0 +1,24 @@
+/*
+Time Complexity - O(|S|)
+Space Complexity - O(1)
+
+Question Link- https://practice.geeksforgeeks.org/problems/implement-atoi/1/#
+*/
+int atoi(string str) {
+        int num=0;
+        bool fg=0;
+        for(int i=0;i<str.size();i++)
+        {
+            if(i==0 && str[i]=='-')
+            {
+                fg=1;
+                continue;
+            }
+            if(i==0 && str[i]=='+')
+            continue;
+            if(!isdigit(str[i]))
+            return -1;
+            num=num*10+(int)(str[i]-48);
+        }
+        return fg?num*(-1):num;
+    }
