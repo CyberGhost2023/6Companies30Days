@@ -1,0 +1,43 @@
+/*
+Time Complexity- O(N^2), worst case.
+Space Complexity- O(N^2), worst case.
+
+
+Question Link- https://practice.geeksforgeeks.org/problems/express-as-sum-of-power-of-natural-numbers5647/1#
+Note - Above link is gfg link and it has wrong testcase.So instead use,
+https://www.hackerrank.com/challenges/the-power-sum/problem
+
+*/
+int calc(int x,int p)
+    {
+        long long val=1;
+        while(p--)
+        {
+            val*=x;
+        }
+        return val;
+    }
+    
+    int find(int n,int x,int ind,vector<vector<int>> &dp)
+    {
+        if(n==0)
+        return 1;
+        if(dp[n][ind]!=-1)
+        return dp[n][ind];
+        int sum=0;
+        
+            int num=calc(ind,x);
+            if(num<=n)
+            {
+            sum+=find(n-num,x,ind+1,dp);
+            sum+=find(n,x,ind+1,dp);
+            }
+        dp[n][ind]=sum;
+        return sum;
+    }
+    
+    int numOfWays(int n, int x)
+    {    
+        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        return find(n,x,1,dp);
+    }
