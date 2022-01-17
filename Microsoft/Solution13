@@ -1,1 +1,51 @@
+/*
+Time Complexity - O(V+E), where V is vertices and E is edges in a graph.
+Space Complexity - O(V).
 
+Question Link- https://practice.geeksforgeeks.org/problems/bridge-edge-in-graph/1#
+*/
+int timer=0;
+    vector<vector<int>> vt;
+    void dfs(vector<int> adj[],vector<int> &vis,int ind,int par,vector<int> &tin,vector<int> &low)
+    {
+        vis[ind]=1;
+        tin[ind]=low[ind]=timer++;
+        
+        for(auto it:adj[ind])
+        {
+            if(it==par)
+            continue;
+            if(!vis[it])
+            {
+                dfs(adj,vis,it,ind,tin,low);
+                low[ind]=min(low[ind],low[it]);
+                if(low[it]>tin[ind])
+                {
+                    vector<int> vs{ind,it};
+                    vt.push_back(vs);     
+                }
+            }
+            else
+            low[ind]=min(low[ind],tin[it]);
+        }
+    }
+    
+    int isBridge(int V, vector<int> adj[], int c, int d) 
+    {
+        timer=0;
+        vt.clear();
+        vector<int> vis(V,0),tin(V),low(V);
+        for(int i=0;i<V;i++)
+        {
+            if(vis[i]==0)
+            {
+                dfs(adj,vis,i,-1,tin,low);
+            }
+        }
+        for(auto it:vt)
+        {
+            if(it[0]==c && it[1]==d || it[0]==d && it[1]==c)
+            return 1;
+        }
+        return 0;
+    }
