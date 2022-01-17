@@ -1,0 +1,29 @@
+ /*
+ Time Complexity - O(N)
+ Space Complexity - O(N)
+ 
+ Question Link- https://practice.geeksforgeeks.org/problems/winner-of-an-election-where-votes-are-represented-as-candidate-names-1587115621/1/ 
+ */
+ 
+ vector<string> winner(string arr[],int n)
+    {
+        int mx=0;
+        map<string,int> vote;
+        vector<string> vt;
+        for(int i=0;i<n;i++)
+        {
+            vote[arr[i]]++;
+            if(vote[arr[i]]>mx)
+            mx=vote[arr[i]];
+        }
+        for(auto x:vote)
+        {
+            if(x.second==mx)
+            {
+                vt.push_back(x.first);
+            }
+        }
+        sort(vt.begin(),vt.end());
+        vector<string> vs{vt[0],to_string(mx)};
+        return vs;
+    }
