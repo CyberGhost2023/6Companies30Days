@@ -1,0 +1,25 @@
+/*
+Time Complexity - O(N)
+Space Complexity-  O(1)
+
+Question Link- https://leetcode.com/problems/longest-mountain-in-array/submissions/
+*/
+
+int longestMountain(vector<int>& ar) {
+        int lt=0,rt=0,ans=0,n=ar.size();
+        while(lt<n-1)
+        {
+            while(lt<n-1 && ar[lt]>=ar[lt+1])
+                lt++;
+            rt=lt;
+            while(rt<n-1 && ar[rt]<ar[rt+1])
+                rt++;
+           while(rt<n-1 && ar[rt]>ar[rt+1]) 
+           {
+               rt++;
+               ans=max(ans,rt-lt+1);
+           }
+            lt=rt;
+        }
+        return ans;
+    }
