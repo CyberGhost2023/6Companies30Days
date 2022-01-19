@@ -1,0 +1,32 @@
+/*
+Time Complexity - O(n*26)
+Space Complexity- O(26)
+
+Question Link- https://practice.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1
+*/
+
+string FirstNonRepeating(string A){
+		    vector<int> vt(26,0);
+		    int cnt=1;
+		    string st="";
+		    for(int i=0;i<A.size();i++)
+		    {
+		        if(vt[A[i]-97]==0)
+		        {
+		            vt[A[i]-97]=cnt++;
+		        }
+		        else
+		        vt[A[i]-97]=INT_MAX;
+		        int cur=INT_MAX,ind;
+		        for(int j=0;j<26;j++)
+		        {
+		            if(vt[j]>0 && vt[j]<INT_MAX && cur>vt[j])
+		            {
+		                cur=vt[j];
+		                ind=j;
+		            }
+		        }
+		        st+= (cur==INT_MAX?'#':ind+97);
+		    }
+		    return st;
+		}
