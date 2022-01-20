@@ -1,0 +1,24 @@
+/*
+Time Complexity - O(N)
+Space Complexity- O(1)
+
+Question Link- https://practice.geeksforgeeks.org/problems/next-higher-palindromic-number-using-the-same-set-of-digits5859/1/#
+*/
+string nextPalin(string st) { 
+        if(st.size()<=3)
+        return "-1";
+        int N=st.size();
+        string sk=st.substr(0,N/2);
+        if(next_permutation(sk.begin(),sk.end()))
+        {
+            string ss=sk;
+            reverse(ss.begin(),ss.end());
+            if(st.size()%2)
+            {
+                sk+=st[N/2];
+            }
+            sk+=ss;
+            return sk;
+        }
+        return "-1";
+    }
