@@ -1,0 +1,28 @@
+/*
+Time Complexity- O(N*K)
+Space Complexity- O(N*K)
+
+Question Link- https://practice.geeksforgeeks.org/problems/7b9d245852bd8caf8a27d6d3961429f0a2b245f1/1/
+*/
+
+int kvowelwords(int N, int K) {
+        long long dp[N+1][K+1],mod=1e9+7;
+        memset(dp,0,sizeof(dp));
+        long long sum=1;
+        for(int i=1;i<=N;i++)
+        {
+            dp[i][0]=sum*21;
+            dp[i][0] %=mod;
+            sum=dp[i][0];
+            dp[0][0]=1;
+            for(int j=1;j<=K;j++)
+            {
+                if(j>i)
+                break;
+                dp[i][j]=(dp[i-1][j-1]*5)%mod;
+                sum+=dp[i][j];
+                sum %=mod;
+            }
+        }
+        return sum;
+    }
