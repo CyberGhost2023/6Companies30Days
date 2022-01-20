@@ -1,0 +1,32 @@
+/*
+Time Complexity- O(max(|V1|,|V2|), where |V| denotes length of string V.
+Space Complexity- O(max(|V1|,|V2|), where |V| denotes length of string V. 
+*/
+
+in1=input().strip("\"")
+in2=input().strip("\"")
+s1=list()
+s2=list()
+if in1:
+    s1=[int(i) for i in in1.split(".")]
+if in2:
+    s2=[int(i) for i in in2.split(".")]
+while(len(s1)<len(s2)):
+    s1.append(0)
+while(len(s2)<len(s1)):
+    s2.append(0)
+flag=0
+for i in range(len(s1)):
+    if s1[i]>s2[i]:
+        flag=1
+        break
+    elif s2[i]>s1[i]:
+        flag=2
+        break
+        
+if flag==0:
+    print("same")
+elif flag==1:
+    print("1st version")
+else:
+    print("2nd version")
