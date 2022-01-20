@@ -1,38 +1,24 @@
 /*
-Time Complexity- o(NlogN)
-Space Complexity- O(N)
+Time Complexity- o(NlogM)
+Space Complexity- O(M)
+where N is size of array A and M is sizeof array B.
 
 Question Link- https://practice.geeksforgeeks.org/problems/minimum-insertions-to-make-two-arrays-equal/1/#
 */
 int minInsAndDel(int A[], int B[], int N, int M) {
-        vector<int> vt;
+        vector<int> lis;
         for(int i=0;i<N;i++)
         {
-            int st=0,en=M-1;
-            while(st<=en)
-            {
-                int mid=(en-st)/2+st;
-                if(B[mid]==A[i])
-                {
-                    vt.push_back(A[i]);
-                    break;
-                }
-                else if(A[i]<B[mid])
-                en=mid-1;
-                else 
-                st=mid+1;
-            }
-        }
-        vector<int> lis;
-        for(int i=0;i<vt.size();i++)
-        {
-            auto it=upper_bound(lis.begin(),lis.end(),vt[i]-1);
+            auto itr=lower_bound(B,B+M,A[i]);
+            if(itr==B+M || *itr!=A[i])
+            continue;
+            auto it=upper_bound(lis.begin(),lis.end(),A[i]-1);
             if(it==lis.end())
             {
-                lis.push_back(vt[i]);
+                lis.push_back(A[i]);
             }
             else
-            *it=vt[i];
+            *it=A[i];
         }
         return N+M-2*lis.size();
     }
