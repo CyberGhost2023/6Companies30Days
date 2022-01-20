@@ -1,3 +1,10 @@
+/*
+Time Complexity- O(N*M)
+Space Complexity- O(N*M)
+
+Question Link- https://leetcode.com/problems/rotting-oranges/
+*/
+
 void search(vector<vector<int>> &vis,vector<vector<int>>& grid,int i,int j,int cur)
     {
         if(i<0 || i>=vis.size() || j<0 || j>=vis[0].size() || grid[i][j]==0 || grid[i][j]==2 || vis[i][j]<cur) 
