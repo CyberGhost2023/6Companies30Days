@@ -1,0 +1,27 @@
+/*
+Time Complexity- O(logN), where N=1e9.
+Space Complexity- O(1)
+
+Question Link- https://leetcode.com/problems/koko-eating-bananas/
+*/
+
+int minEatingSpeed(vector<int>& ar, int h) {
+        int st=1,en=1e9,ans=INT_MAX,n=ar.size();
+        while(st<=en)
+        {
+            int mid=(en-st)/2+st;
+            int cnt=0;
+            for(int i=0;i<n;i++)
+            {
+                cnt+=ceil((double)ar[i]/mid);
+            }
+            if(cnt<=h)
+            {
+                ans=min(mid,ans);
+                en=mid-1;
+            }
+            else
+                st=mid+1;
+        }
+        return ans;
+    }
