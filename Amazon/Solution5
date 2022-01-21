@@ -1,0 +1,31 @@
+/*
+Question Link- https://practice.geeksforgeeks.org/problems/phone-directory4628/1/#
+*/
+
+vector<vector<string>> displayContacts(int n, string con[], string s)
+    {
+        set<string> st;
+        vector<vector<string>> ans;
+        for(int i=0;i<n;i++)
+        {
+            st.insert(con[i]);
+        }
+        string sk="";
+        for(int i=0;i<s.size();i++)
+        {
+            sk+=s[i];
+            int k=i+1;
+            vector<string> vt;
+            for(auto x:st)
+            {
+                if(x.substr(0,k)==sk)
+                {
+                    vt.push_back(x);
+                }
+            }
+            if(vt.size()==0)
+            vt.push_back("0");
+            ans.push_back(vt);
+        }
+        return ans;
+    }
