@@ -1,0 +1,36 @@
+/*
+Time Complexity- O(N*M*(4^L)), where N*M is size of board and L is length of string word.
+Space Complexity- O(|L|)
+
+Question Link- https://practice.geeksforgeeks.org/problems/word-search/1
+*/
+
+bool find(vector<vector<char>>& board,int i,int j,string word, int ind)
+    {
+        if(ind==word.size())
+        {
+            return 1;
+        }
+        int n=board.size(),m=board[0].size();
+        if(i<0 || i>=n || j<0 || j>=m || board[i][j]!=word[ind])
+        return 0;
+        board[i][j]='0';
+        bool ans=find(board,i+1,j,word,ind+1) || find(board,i,j+1,word,ind+1) || find(board,i,j-1,word,ind+1) || find(board,i-1,j,word,ind+1);
+        board[i][j]=word[ind];
+        return ans;
+    }
+    bool isWordExist(vector<vector<char>>& board, string word) {
+        int n=board.size(),m=board[0].size();
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(word[0]==board[i][j])
+                {
+                    if(find(board,i,j,word,0))
+                        return 1;
+                }
+            }
+        }
+        return 0;
+    }
