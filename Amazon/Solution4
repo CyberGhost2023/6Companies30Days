@@ -43,3 +43,8 @@ void OptimalParanthesis(int i, int j, int n, int brackets[101][101], char& name,
     OptimalParanthesis(1,n-1, n, brackets , name, s);
     return s; 
     }
+
+
+/*
+#copied
+*/
