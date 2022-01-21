@@ -1,0 +1,71 @@
+/*
+Time Complexity-  O(N^2), in worst case
+Space Complexity- O(N^2), in worst case
+
+Question Link- 
+*/
+void topological(vector<int> &vis,vector<vector<int>> &adj,vector<int> &vt,int ind)
+    {
+        vis[ind]=1;
+        for(int i=0;i<adj[ind].size();i++)
+        {
+            int val=adj[ind][i];
+            if(!vis[val])
+            {
+                topological(vis,adj,vt,val);
+            }
+        }
+        vt.push_back(ind);
+    }
+    
+    bool detectCycle(vector<int> &vis,vector<int>&rec ,vector<vector<int>> &adj,int ind)
+    {
+        if(rec[ind])
+            return 1;
+        if(vis[ind])
+            return 0;
+        vis[ind]=1;
+        rec[ind]=1;
+        for(int i=0;i<adj[ind].size();i++)
+        {
+            int val=adj[ind][i];
+            if(rec[val])
+                return 1;
+            if(!vis[val])
+            {
+                if(detectCycle(vis,rec,adj,val))
+                    return 1;
+            }
+        }
+        rec[ind]=0;
+        return false;
+    }
+    
+    vector<int> findOrder(int n, vector<vector<int>>& pre) {
+        vector<vector<int>> adj(n);
+        for(int i=0;i<pre.size();i++)
+        {
+            adj[pre[i][1]].push_back(pre[i][0]);
+        }            
+        vector<int> vis(n,0),vt,rec(n,0);
+        for(int i=0;i<n;i++)
+        {
+            if(vis[i]==0)
+            {
+                if(detectCycle(vis,rec,adj,i))   
+                   return vt;               
+            }
+        }
+        for(int i=0;i<n;i++)
+            vis[i]=0;
+        
+        for(int i=0;i<n;i++)
+        {
+            if(!vis[i])
+            {
+                topological(vis,adj,vt,i);
+            }
+        }
+        reverse(vt.begin(),vt.end());
+        return vt;
+    }
