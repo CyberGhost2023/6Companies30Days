@@ -1,0 +1,31 @@
+/*
+Time Complexity- O(N^2), where N is 9.
+Space Complexity- O(3*N^2), where N is 9.
+
+Question Link- https://practice.geeksforgeeks.org/problems/is-sudoku-valid4820/1/#
+*/
+
+int isValid(vector<vector<int>> mat){
+        int row[9][9],col[9][9],sec[9][9];
+        for(int i=0;i<9;i++)
+        {
+            for(int j=0;j<9;j++)
+            row[i][j]=col[i][j]=sec[i][j]=0;
+        }
+        for(int i=0;i<9;i++)
+        {
+            for(int j=0;j<9;j++)
+            {
+                if(mat[i][j]==0)
+                continue;
+                int in=i/3*3+j/3;
+                int val=mat[i][j]-1;
+                if(row[i][val] || col[j][val] || sec[in][val])
+                return 0;
+                row[i][val]++;
+                col[j][val]++;
+                sec[in][val]++;
+            }
+        }
+        return 1;
+    }
