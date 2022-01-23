@@ -1,0 +1,39 @@
+/*
+Time Complexity- O(n!/(n-k)!)
+Space Complexity- O(n)
+
+Question Link- https://practice.geeksforgeeks.org/problems/largest-number-in-k-swaps-1587115620/1#
+*/
+string find(string st,int ind,int k)
+    {
+        if(k==0 || ind==st.size())
+        return st;
+        int mx=st[ind];
+        for(int i=ind+1;i<st.size();i++)
+        {
+            mx=max(mx,(int)st[i]);
+        }
+        // cout<<mx<<" ";
+        if(mx==st[ind])
+        {
+            return find(st,ind+1,k);
+        }
+        string ans=st;
+        for(int i=ind+1;i<st.size();i++)
+        {
+            if((int)st[i]==mx)
+            {
+                swap(st[i],st[ind]);
+                // cout<<st<<" ";
+                ans=max(ans,find(st,ind+1,k-1));
+                swap(st[i],st[ind]);
+            }
+        }
+        return ans;
+    }
+    //Function to find the largest number after k swaps.
+    string findMaximumNum(string str, int k)
+    {
+          return find(str,0,k);
+    }
+    
