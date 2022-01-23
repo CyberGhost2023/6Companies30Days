@@ -1,0 +1,44 @@
+/*
+Time Complexity- O(N+K), where N is the length of string and K is the time taken to convert integer to string and compare 2 strings.
+Space Complexity - O(1)
+
+Question Link- https://practice.geeksforgeeks.org/problems/find-the-missing-no-in-string/1/#
+*/
+int missingNumber(const string& s)
+{
+    int n=s.size();
+    for(int i=1;i<=min(n,6);i++)
+    {
+        string st=s.substr(0,i);
+        int sum=stoi(st);
+        int cnt=0,ind=-1,flag=0;
+        for(int j=0;j<n;sum++)
+        {
+            string ss=to_string(sum);
+            if(j+ss.size()-1<n)
+            {
+                string sk=s.substr(j,ss.size());
+                if(sk==ss)
+                {
+                    j+=ss.size();
+                }
+                else
+                {
+                    cnt++;
+                    if(cnt>1)
+                    break;
+                    if(cnt==1)
+                    ind=sum;
+                }
+            }
+            else
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(!flag && cnt==1)
+        return ind;
+    }
+    return -1;
+}
