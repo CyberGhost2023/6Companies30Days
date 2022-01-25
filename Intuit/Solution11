@@ -1,0 +1,36 @@
+/*
+Time Complexity- O(n^2)
+Space Complexity- O(n^2) , for recursion stack
+
+Question Link- https://leetcode.com/problems/construct-quad-tree/
+*/
+
+Node* solve(vector<vector<int>>& grid,int i,int j,int n)
+    {
+        if(n==1)
+        {
+            Node *pt=new Node(grid[i][j],1);
+            return pt;
+        }
+        int x=n;
+        n>>=1;
+        Node *p1=solve(grid,i,j,n);
+        Node *p2=solve(grid,i,j+n,n);
+        Node *p3=solve(grid,i+n,j,n);
+        Node *p4=solve(grid,i+n,j+n,n);
+        if(p1->val==p2->val && p2->val==p3->val && p3->val==p4->val && p1->isLeaf  && p2->isLeaf  && p3->isLeaf  && p4->isLeaf)
+        {
+            Node *pt=new Node(p1->val,1);
+            delete(p1);
+            delete(p2);
+            delete(p3);
+            delete(p4);
+            return pt;
+        }
+        Node *pt=new Node(1,0,p1,p2,p3,p4);
+        return pt;
+    }
+    Node* construct(vector<vector<int>>& grid) {
+        int n=grid.size();
+        return solve(grid,0,0,n);
+    }
