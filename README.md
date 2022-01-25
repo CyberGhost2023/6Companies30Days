@@ -9,6 +9,8 @@ Microsoft Questions Doc- https://docs.google.com/document/d/1sSyOTeZBVJExf0oytLV
 
 Adobe Questions Doc- https://docs.google.com/document/d/1cEAe63fC3YMJRwKmCoVOIXFUaFv5LqNXedxaGpaqd6U/edit
 
+Intuit Question Doc- https://docs.google.com/document/d/18oi6OlvcL3wYn20Jb9crW7NO4cGkL6vUfTvplNDGkTw/edit
+
 GFG Profile - https://auth.geeksforgeeks.org/user/tusharsachan2014/practice/
 
 LeetCode Profile - https://leetcode.com/cyberghost2023/
