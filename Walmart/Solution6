@@ -1,0 +1,19 @@
+/*
+Time Complexity- O(logN)
+Space Complexity- O(1)
+
+Question Link- https://practice.geeksforgeeks.org/problems/power-of-numbers-1587115620/1/
+*/
+long long power(int n,int R)
+    {
+        long long pro=1,N=n;
+        while(R)
+        {
+            // cout<<N<<" "<<R<<"\n";
+            if(R%2)
+            pro=(pro*N)%mod;
+            N=(N*N)%mod;
+            R/=2;
+        }
+        return pro;
+    }
