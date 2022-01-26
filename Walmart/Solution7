@@ -1,0 +1,20 @@
+/*
+Time Complexity- O(N), where N is number of nodes.
+Space Complexity- O(N), in worst case for recursion stack use.
+
+Question Link- https://practice.geeksforgeeks.org/problems/transform-to-sum-tree/1/
+*/
+int trav(Node *root)
+    {
+        if(root==NULL)
+        return 0;
+        int val=root->data;
+        int lt=trav(root->left);
+        int rt=trav(root->right);
+        root->data=lt+rt;
+        return val+root->data;
+    }
+    void toSumTree(Node *node)
+    {
+        trav(node);
+    }
