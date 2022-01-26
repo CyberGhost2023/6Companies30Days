@@ -1,0 +1,23 @@
+/*
+Time Complexity- O(n^2)
+Space Complexity- O(n^2)
+
+Question Link- https://leetcode.com/problems/stone-game/
+*/
+int find(vector<int> &pil,int st, int en,vector<vector<int>> &dp)
+    {
+        if(st>en)
+            return 0;
+        if(dp[st][en]==-1)
+        dp[st][en]= max(pil[st]+min(find(pil,st+2,en,dp),find(pil,st+1,en-1,dp)),pil[en]+min(find(pil,st,en-2,dp),find(pil,st+1,en-1,dp)));
+            return dp[st][en];
+        
+    }
+    bool stoneGame(vector<int>& piles) {
+        int sum=0,ans,n=piles.size();
+        vector<vector<int>> dp(n,vector<int>(n,-1));
+        for(int i=0;i<piles.size();i++)
+            sum+=piles[i];
+        ans=find(piles,0,piles.size()-1,dp);
+        return ans>(sum-ans);
+    }
