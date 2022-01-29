@@ -1,0 +1,34 @@
+/*
+Time Complexity- O(N)
+Space Complexity- O(1)
+
+Question Link- https://leetcode.com/problems/remove-colored-pieces-if-both-neighbors-are-the-same-color/
+*/
+bool winnerOfGame(string colors) {
+        int sum1=0,sum2=0,cnt1=0,cnt2=0;
+        for(auto x:colors)
+        {
+            if(x=='A')
+            {
+                if(cnt2>2)
+                    sum2+=(cnt2-2);
+                cnt2=0;
+                cnt1++;
+            }
+            else
+            {
+                if(cnt1>2)
+                    sum1+=(cnt1-2);
+                cnt2++;
+                cnt1=0;
+            }
+        }
+                if(cnt1>2)
+                    sum1+=(cnt1-2);
+        if(cnt2>2)
+                    sum2+=(cnt2-2);
+        int val=min(sum1,sum2);
+        sum1-=val;
+        sum2-=val;
+        return sum1>sum2;
+    }
