@@ -1,0 +1,26 @@
+/*
+Time Complexity- O(N^2)
+Space Complexity- O(N^2)
+
+Question Link- https://leetcode.com/problems/guess-number-higher-or-lower-ii/
+*/
+
+int find(int st,int en,vector<vector<int>> &dp)
+    {
+        if(st>=en)
+            return 0;
+        if(dp[st][en]!=-1)
+            return dp[st][en];
+        
+        int ans=INT_MAX;
+        for(int i=st;i<=en;i++)
+        {
+            int res=i+max(find(st,i-1,dp),find(i+1,en,dp));
+            ans=min(ans,res);    
+        }
+        return dp[st][en]=ans;
+    }
+    int getMoneyAmount(int n) {
+        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        return find(1,n,dp);
+    }
