@@ -1,0 +1,24 @@
+/*
+Time Complexity- O(1)
+Space Complexity- O(1)
+
+Question Link- https://leetcode.com/problems/generate-random-point-in-a-circle/
+*/
+class Solution {
+    double r,x,y;
+public:
+    Solution(double radius, double x_center, double y_center) {
+        this->r=radius;
+        this->x=x_center;
+        this->y=y_center;
+        srand(time(0));
+    }
+    
+    vector<double> randPoint() {
+        vector<double> vt(2);
+        double R=sqrt((double)rand()/RAND_MAX)*r,deg=2*M_PI*random();
+        vt[0]=R*cos(deg)+x;
+        vt[1]=R*sin(deg)+y;        
+        return vt;
+    }
+};
