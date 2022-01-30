@@ -5,6 +5,8 @@ Space Complexity- O(N)
 Question Link- https://practice.geeksforgeeks.org/problems/sorted-subsequence-of-size-3/1/#
 */
 
+//  Approach-1
+
 vector<int> find3Numbers(vector<int> ar, int n) {
         vector<int> vt;
         stack<int> st;
@@ -19,6 +21,27 @@ vector<int> find3Numbers(vector<int> ar, int n) {
                 vt.push_back(st.top());
                 st.pop();}
                 return vt;
+            }
+        }
+        return vt;
+    }
+
+// Approach-2
+
+vector<int> find3Numbers(vector<int> ar, int n) {
+        vector<int> vt,sm(n+2,INT_MAX),lg(n+2,INT_MIN);
+        for(int i=0;i<n;i++)
+            sm[i+1]=min(sm[i],ar[i]);
+        for(int i=n-1;i>=0;i--)
+            lg[i+1]=max(lg[i+2],ar[i]);
+        for(int i=1;i<=n;i++)
+        {
+            if(ar[i-1]>sm[i] && ar[i-1]<lg[i] && sm[i]!=lg[i])
+            {
+                vt.push_back(sm[i]);
+                vt.push_back(ar[i-1]);
+                vt.push_back(lg[i]);
+                break;
             }
         }
         return vt;
