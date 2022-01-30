@@ -1,0 +1,25 @@
+/*
+Time Complexity- O(N)
+Space Complexity- O(N)
+
+Question Link- https://practice.geeksforgeeks.org/problems/sorted-subsequence-of-size-3/1/#
+*/
+
+vector<int> find3Numbers(vector<int> ar, int n) {
+        vector<int> vt;
+        stack<int> st;
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!st.empty() && st.top()<=ar[i])
+            st.pop();
+            st.push(ar[i]);
+            if(st.size()==3)
+            {
+                while(!st.empty()){
+                vt.push_back(st.top());
+                st.pop();}
+                return vt;
+            }
+        }
+        return vt;
+    }
