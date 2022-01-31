@@ -1,27 +1,32 @@
 /*
-Time Complexity- O(logN), where N=1e9.
+Time Complexity- O(NlogN).
 Space Complexity- O(1)
 
 Question Link- https://leetcode.com/problems/koko-eating-bananas/
 */
 
-int minEatingSpeed(vector<int>& ar, int h) {
-        int st=1,en=1e9,ans=INT_MAX,n=ar.size();
-        while(st<=en)
+int calc(int mid,vector<int>&p)
+    {
+        int sum=0;
+        for(int i=0;i<p.size();i++)
         {
-            int mid=(en-st)/2+st;
-            int cnt=0;
-            for(int i=0;i<n;i++)
+            sum+=ceil((double)p[i]/mid);
+        }
+        return sum;
+    }
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int n=piles.size();
+        int st=1;    
+        int en=*max_element(begin(piles),end(piles));
+        while(st<en)
+        {
+            int mid=(st+en)/2;
+            if(calc(mid,piles)>h)
             {
-                cnt+=ceil((double)ar[i]/mid);
-            }
-            if(cnt<=h)
-            {
-                ans=min(mid,ans);
-                en=mid-1;
+                st=mid+1;
             }
             else
-                st=mid+1;
+                en=mid;
         }
-        return ans;
+        return en;
     }
