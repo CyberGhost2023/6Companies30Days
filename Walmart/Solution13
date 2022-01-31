@@ -4,6 +4,9 @@ Space Complexity- O(k*|S|), where |S| denotes the maximum size of a string.
   
 Question Link- https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/  
 */
+
+// Approach-1
+
 struct CompareStrings
     {
         bool operator()(string &s1,string &s2)
@@ -29,4 +32,25 @@ struct CompareStrings
                 pq.pop();
         }
         return pq.top();
+    }
+
+
+
+// Approach-2
+
+/*
+Time Complexity- O(N) , where N is size of nums, |S| denotes the maximum size of a string. 
+Space Complexity- O(1), where |S| denotes the maximum size of a string. 
+*/
+
+string kthLargestNumber(vector<string>& nums, int k) {
+        nth_element(nums.begin(),nums.begin()+k-1,nums.end(),[](string &s1,string &s2)
+      {
+          if(s1.size()!=s2.size())
+          {
+              return s1.size()>s2.size();
+          }
+          return s1>s2;
+      });
+        return nums[k-1];
     }
